@@ -1,23 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Form, QRCode, DownloadQRCode } from "./components";
+import "./App.css";
 
 function App() {
+  const [state, setState] = useState({
+    imageUrl: "",
+    qrCodeValue: "",
+    showQRCode: false,
+  });
+  // const [formData, setFormData] = useState({});
+
+  // const handleFormSubmit = (data) => {
+  //   setFormData(data);
+  // };
+
+  const handleImageUrlChange = (url) => {
+    setState({ ...state, imageUrl: url });
+  };
+
+  const handleQRCodeValueChange = (value) => {
+    setState({ ...state, qrCodeValue: value });
+  };
+
+  const handleGenerateQRCode = () => {
+    setState({ ...state, showQRCode: true });
+  };
+
+  const handleReset = () => {
+    setState({ imageUrl: "", qrCodeValue: "", showQRCode: false });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1>QR Code Generator</h1>
+      <Form
+        imageUrl={state.imageUrl}
+        onImageUrlChange={handleImageUrlChange}
+        qrCodeValue={state.qrCodeValue}
+        onQRCodeValueChange={handleQRCodeValueChange}
+        onGenerateQRCode={handleGenerateQRCode}
+        onReset={handleReset}
+        // onSubmit={handleFormSubmit}
+      />
+      {state.showQRCode && (
+        <>
+          {/* <ImageUpload imageUrl={state.imageUrl} /> */}
+          <QRCode value={state.qrCodeValue} />
+
+          <DownloadQRCode value={state.qrCodeValue} />
+        </>
+      )}
     </div>
   );
 }
