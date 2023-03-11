@@ -1,0 +1,26 @@
+.qrcode {
+  display: grid;
+  place-items: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 90%;
+}
+
+.qrcode .qrcode-text {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .qrcode {
+    max-width: 100%;
+    margin: 1rem 0;
+    border-radius: 0;
+  }
+}
