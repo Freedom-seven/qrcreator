@@ -1,0 +1,34 @@
+.download-qrcode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+.download-qrcode button {
+  padding: 0.8rem 1.2rem;
+  font-size: 1.2rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-top: 1rem;
+}
+
+.download-qrcode button:hover {
+  background-color: #3e8e41;
+}
+
+@media (max-width: 768px) {
+  .download-qrcode {
+    padding: 1rem;
+  }
+
+  .download-qrcode button {
+    font-size: 1rem;
+  }
+}
