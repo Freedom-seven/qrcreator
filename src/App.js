@@ -14,9 +14,9 @@ function App() {
   //   setFormData(data);
   // };
 
-  const handleImageUrlChange = (url) => {
-    setState({ ...state, imageUrl: url });
-  };
+  // const handleImageUrlChange = (url) => {
+  //   setState({ ...state, imageUrl: url });
+  // };
 
   const handleQRCodeValueChange = (value) => {
     setState({ ...state, qrCodeValue: value });
@@ -27,15 +27,15 @@ function App() {
   };
 
   const handleReset = () => {
-    setState({ imageUrl: "", qrCodeValue: "", showQRCode: false });
+    setState({ qrCodeValue: "", showQRCode: false });
   };
 
   return (
     <div className="app">
       <h1>QR Code Generator</h1>
       <Form
-        imageUrl={state.imageUrl}
-        onImageUrlChange={handleImageUrlChange}
+        // imageUrl={state.imageUrl}
+        // onImageUrlChange={handleImageUrlChange}
         qrCodeValue={state.qrCodeValue}
         onQRCodeValueChange={handleQRCodeValueChange}
         onGenerateQRCode={handleGenerateQRCode}
