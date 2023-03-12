@@ -16,12 +16,6 @@ function Form({ onSubmit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Check if all required fields are filled in
-    if (!name || !email || !phone) {
-      alert("Please fill in all required fields");
-      return;
-    }
-
     const data = {
       name,
       email,
@@ -29,7 +23,8 @@ function Form({ onSubmit }) {
       message,
     };
 
-    setQRCodeData(JSON.stringify(data));
+    const stringifiedData = JSON.stringify(data);
+    setQRCodeData(stringifiedData);
     setShowQRCode(true);
     setName("");
     setEmail("");
@@ -81,7 +76,7 @@ function Form({ onSubmit }) {
       {showQRCode && (
         <div className="qrcode-container">
           <QRCode value={qrCodeData} />
-          <DownloadQRCode qrCodeData={JSON.parse(qrCodeData)} />
+          <DownloadQRCode qrCodeData={qrCodeData} />
         </div>
       )}
     </div>
