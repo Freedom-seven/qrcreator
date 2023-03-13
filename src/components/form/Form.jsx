@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
 import "./Forms.css";
-// import ImageUpload from "../imageUpload/ImageUpload";
 import QRCode from "../qrcode/QRCode";
 import DownloadQRCode from "../download/DownloadQRCode";
 
-function Form({ onSubmit }) {
+function Form({ onSubmit, onReset }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -15,6 +14,11 @@ function Form({ onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!name && !email && !phone && !message) {
+      alert("Please fill at least one field");
+      return;
+    }
 
     const data = {
       name,
@@ -30,6 +34,17 @@ function Form({ onSubmit }) {
     setEmail("");
     setPhone("");
     setMessage("");
+    onSubmit();
+  };
+
+  const handleReset = () => {
+    setName("");
+    setEmail("");
+    setPhone("");
+    setMessage("");
+    setQRCodeData(null);
+    setShowQRCode(false);
+    onReset();
   };
 
   return (
@@ -41,7 +56,6 @@ function Form({ onSubmit }) {
           id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          required
         />
 
         <label htmlFor="email">Email:</label>
@@ -50,7 +64,6 @@ function Form({ onSubmit }) {
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
         />
 
         <label htmlFor="phone">Phone:</label>
@@ -59,7 +72,6 @@ function Form({ onSubmit }) {
           id="phone"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          required
         />
 
         <label htmlFor="message">Message:</label>
@@ -69,13 +81,15 @@ function Form({ onSubmit }) {
           onChange={(e) => setMessage(e.target.value)}
         />
 
-        {/* <ImageUpload onUpload={(file) => console.log(file)} /> */}
         <button type="submit">Generate QR Code</button>
       </form>
 
       {showQRCode && (
         <div className="qrcode-container">
           <QRCode value={qrCodeData} />
+          <button type="button" onClick={handleReset}>
+            Reset
+          </button>
           <DownloadQRCode qrCodeData={qrCodeData} />
         </div>
       )}

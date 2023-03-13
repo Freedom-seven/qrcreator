@@ -7,26 +7,22 @@
 }
 
 .app h1 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
+  text-align: center;
+  color: black;
+  font-size: 2.5rem;
+  padding-bottom: 2rem;
+  text-transform: uppercase;
 }
 
 /* Media query for devices with a maximum width of 768px */
 @media screen and (max-width: 768px) {
   .app {
-    height: auto;
     padding: 1rem;
   }
+}
 
-  .app form {
-    width: 100%;
-  }
-
-  .app .image-upload {
-    height: 150px;
-  }
-
-  .app .qrcode {
-    width: 100%;
+@media screen and (max-width: 350px) {
+  .app {
+    padding: 3rem;
   }
 }
